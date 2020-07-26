@@ -37,6 +37,9 @@
                 <hr>
                 <div id="content_table">
                 </div>
+                <i>1. Ketik nomor kupon lalu tekan enter untuk mencari berdasarkan nomor</i>
+                <br>
+                <i>2. Tekan alt+enter untuk memproses baris paling atas (yang belum diproses)</i>
             </div>
         </div>
     </div>
