@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Coupon;
 use App\Period;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -29,6 +30,9 @@ class PeriodController extends Controller
             $periods = $periods->where('name', 'like', '%'. $request->input('name') .'%');
         if ($request->has('ajax')) return $periods->get();
         $periods = $periods->paginate(10);
+        foreach ($periods as $key => $period) {
+            $periods[$key]->is_generate = Coupon::where('period_id', '=', $period->id)->count();
+        }
         return view('period._table', compact('periods'));
     }
 

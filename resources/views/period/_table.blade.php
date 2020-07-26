@@ -6,7 +6,8 @@
             <th>Nama</th>
             <th>Tahun</th>
             <th class="text-center" width="100px"></th>
-        </tr>
+            <th class="text-center" width="130px"></th>
+        </tr
         </thead>
         <tbody>
         @foreach($periods as $key => $period)
@@ -16,6 +17,11 @@
                 <td>{{ $period->year }}</td>
                 <td>
                     <a href="{{ route('period.info', 'id=' . $period->id) }}">Ubah</a>
+                </td>
+                <td>
+                    @if($period->is_generate == 0)
+                        <a href="javascript:void(0)" onclick="generateCoupon({{ $period->id }})">Generate Kupon</a>
+                    @endif
                 </td>
             </tr>
         @endforeach

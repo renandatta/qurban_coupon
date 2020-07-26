@@ -35,6 +35,33 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="generate_coupon" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form action="{{ route('coupon.generate') }}" method="post">
+                @csrf
+                <input type="hidden" name="period_id" id="period_id">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Buat Kupon</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="qty">Jumlah Kupon</label>
+                            <input type="text" class="form-control" name="qty" id="qty">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Proses</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 @endsection
 
 @push('scripts')
@@ -48,6 +75,11 @@
             if (page.toString() === '+1') page = selectedPage+1;
             selectedPage = page;
             $('#form_search').trigger('submit');
+        }
+        function generateCoupon(id)
+        {
+            $('#period_id').val(id);
+            $('#generate_coupon').modal('show');
         }
         $('#form_search').submit(function (e) {
             e.preventDefault();

@@ -49,4 +49,21 @@ class CouponController extends Controller
             'claim_media' => 'Web'
         ]);
     }
+
+    public function generate(Request $request)
+    {
+        if (!$request->has('period_id')) return abort(404);
+
+        for ($i = 1; $i <= intval($request->input('qty')); $i++) {
+            $no = $i;
+            $no = strlen($i) == 1 ? '00' . $i : $no;
+            $no = strlen($i) == 2 ? '0' . $i : $no;
+            Coupon::create([
+                'period_id' => $request->input('period_id'),
+                'no_coupon' => $no,
+                'name' => 'Kupon nomor ' . $no
+            ]);
+        }
+        return redirect()->route('period');
+    }
 }

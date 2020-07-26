@@ -17,7 +17,6 @@
                     <div class="input-group mt-3">
                         <div class="input-group-prepend">
                             <select name="period_id" id="search_period_id" class="form-control">
-                                <option value="">Semua Periode Qurban</option>
                                 @foreach($periods as $period)
                                     <option value="{{ $period->id }}">{{ $period->name }}</option>
                                 @endforeach

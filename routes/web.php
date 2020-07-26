@@ -25,3 +25,4 @@ Route::post('period/delete', 'PeriodController@delete')->name('period.delete');
 Route::get('coupon', 'CouponController@index')->name('coupon');
 Route::post('coupon/search', 'CouponController@search')->name('coupon.search');
 Route::post('coupon/claim', 'CouponController@claim')->name('coupon.claim');
+Route::post('coupon/generate', 'CouponController@generate')->name('coupon.generate');
