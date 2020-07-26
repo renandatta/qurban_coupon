@@ -20,3 +20,8 @@ Route::post('period/search', 'PeriodController@search')->name('period.search');
 Route::get('period/info', 'PeriodController@info')->name('period.info');
 Route::post('period/save', 'PeriodController@save')->name('period.save');
 Route::post('period/delete', 'PeriodController@delete')->name('period.delete');
+
+// ========= coupon
+Route::get('coupon', 'CouponController@index')->name('coupon');
+Route::post('coupon/search', 'CouponController@search')->name('coupon.search');
+Route::post('coupon/claim', 'CouponController@claim')->name('coupon.claim');

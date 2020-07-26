@@ -54,6 +54,9 @@
                         <li class="nav-item {{ Session::get('menu_active') == 'period' ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('period') }}">Periode Qurban</a>
                         </li>
+                        <li class="nav-item {{ Session::get('menu_active') == 'coupon' ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('coupon') }}">Kupon Pengambilan</a>
+                        </li>
                     </ul>
                 </div>
             </div>
