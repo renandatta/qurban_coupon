@@ -1,14 +1,14 @@
 @extends('layouts.main')
 
 @section('title')
-    Periode -
+    {{ $title }} -
 @endsection
 
 @section('content')
     <div class="container pt-4">
         <h3>
             <img src="{{ asset('img/logo.png') }}" alt="" class="img-fluid" style="height: 28px">
-            Periode
+            {{ $title }}
         </h3>
         <div class="card shadow-sm">
             <div class="card-body">
@@ -31,22 +31,35 @@
                 </form>
                 <hr>
                 <div id="content_table">
-                    <div class="table-responsive">
-                        <table class="table table-sm table-bordered">
-                            <thead>
-                            <tr>
-                                <th class="text-center" width="50px">No</th>
-                                <th>Nama</th>
-                                <th>Tahun</th>
-                                <th class="text-center" width="100px">Perintah</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        let selectedPage = 1;
+        function toggleSearch() {
+            $('#form_search').slideToggle();
+        }
+        function searchData(page = 1) {
+            if (page.toString() === '-1') page = selectedPage-1;
+            if (page.toString() === '+1') page = selectedPage+1;
+            selectedPage = page;
+            $('#form_search').trigger('submit');
+        }
+        $('#form_search').submit(function (e) {
+            e.preventDefault();
+            $.post("{{ route('period.search') }}?page=" + selectedPage, {
+                _token: '{{ csrf_token() }}',
+                name: $('#search_name').val()
+            }, function (result) {
+                $('#content_table').html(result);
+            }).fail(function (xhr) {
+                console.log(xhr.responseText);
+            });
+        });
+        searchData();
+    </script>
+@endpush

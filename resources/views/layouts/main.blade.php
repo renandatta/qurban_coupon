@@ -51,6 +51,9 @@
                         <li class="nav-item {{ Session::get('menu_active') == 'home' ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('home') }}">Halaman Utama</a>
                         </li>
+                        <li class="nav-item {{ Session::get('menu_active') == 'period' ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('period') }}">Periode Qurban</a>
+                        </li>
                     </ul>
                 </div>
             </div>
