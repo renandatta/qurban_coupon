@@ -36,7 +36,7 @@
     <title>@yield('title') {{ env('APP_NAME') }}</title>
 </head>
 <body>
-
+    @auth
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{ route('home') }}">
@@ -51,14 +51,11 @@
                         <li class="nav-item {{ Session::get('menu_active') == 'home' ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('home') }}">Halaman Utama</a>
                         </li>
-                        <li class="nav-item {{ Session::get('menu_active') == 'period' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('period') }}">Periode</a>
-                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
-
+    @endauth
     @yield('content')
     <script src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>

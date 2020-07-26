@@ -15,7 +15,7 @@
                 </div>
                 <div class="card shadow-sm">
                     <div class="card-body">
-                        <form action="" method="post">
+                        <form action="{{ route('login.process') }}" method="post">
                             @csrf
                             <div class="form-group">
                                 <label for="email">Email</label>
@@ -26,7 +26,7 @@
                                 <input type="password" class="form-control" id="password" name="password" placeholder="******" required>
                             </div>
 
-                            <a href="{{ route('home') }}" class="btn btn-block btn-primary">Login</a>
+                            <button type="submit" class="btn btn-block btn-primary">Login</button>
                             <hr>
                             <h6 class="text-center">Untuk informasi lebih lanjut hubungi <br> <a href="mailto:renandattarooziq@gmail.com">renandattarooziq@gmail.com</a></h6>
                         </form>
