@@ -20,6 +20,7 @@ Route::post('period/search', 'PeriodController@search')->name('period.search');
 Route::get('period/info', 'PeriodController@info')->name('period.info');
 Route::post('period/save', 'PeriodController@save')->name('period.save');
 Route::post('period/delete', 'PeriodController@delete')->name('period.delete');
+Route::get('period/print_coupon', 'PeriodController@print_coupon')->name('period.print_coupon');
 
 // ========= coupon
 Route::get('coupon', 'CouponController@index')->name('coupon');

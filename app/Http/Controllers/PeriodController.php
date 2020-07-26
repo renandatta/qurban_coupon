@@ -59,4 +59,12 @@ class PeriodController extends Controller
         if ($request->has('ajax')) return $period;
         return redirect()->route('period')->with(['success' => 'Periode Qurban Berhasil Dihapus']);
     }
+
+    public function print_coupon(Request $request)
+    {
+        if (!$request->has('id')) return abort(404);
+        $coupons = Coupon::where('period_id', '=', $request->get('id'))->orderBy('no_coupon', 'asc')->get();
+
+        return view('coupon.print_coupon', compact('coupons'));
+    }
 }

@@ -5,7 +5,8 @@
             <th class="text-center" width="50px">No</th>
             <th>Nama</th>
             <th>Tahun</th>
-            <th class="text-center" width="100px"></th>
+            <th class="text-center" width="50px"></th>
+            <th class="text-center" width="70px"></th>
             <th class="text-center" width="130px"></th>
         </tr
         </thead>
@@ -15,8 +16,11 @@
                 <td>{{ $key+1 }}</td>
                 <td>{{ $period->name }}</td>
                 <td>{{ $period->year }}</td>
-                <td>
+                <td class="text-center">
                     <a href="{{ route('period.info', 'id=' . $period->id) }}">Ubah</a>
+                </td>
+                <td class="text-center">
+                    <a target="_blank" href="{{ route('period.print_coupon', 'id=' . $period->id) }}">Cetak</a>
                 </td>
                 <td>
                     @if($period->is_generate == 0)
