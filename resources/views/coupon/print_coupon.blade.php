@@ -15,16 +15,26 @@
             margin-left: 5cm;
             margin-top: 2.55cm;
         }
+        .qrcode-2 {
+            position: absolute;
+            margin-left: 5cm;
+            margin-top: 3cm;
+        }
     </style>
     <table style="width: 100%;">
-        @foreach($coupons as $coupon)
+        @php($pos = 1)
+        @foreach($coupons as $key => $coupon)
             <tr>
                 <td>
-                    <h1>{{ $coupon->no_coupon }}</h1>
-                    <svg class="qrcode" id="barcode{{ $coupon->no_coupon }}" style="height: 2cm;width: 2cm;"></svg>
+                    <h1 @if($pos == 6) style="margin-top: 2.6cm;" @endif>{{ $coupon->no_coupon }}</h1>
+                    <svg @if($pos == 6) class="qrcode-2" @else class="qrcode" @endif id="barcode{{ $coupon->no_coupon }}" style="height: 2cm;width: 2cm;"></svg>
                     <img src="{{ asset('img/coupon.png') }}" alt="" style="width: 18.5cm;">
                 </td>
             </tr>
+            @if($pos == 6) 
+                @php($pos = 1)
+            @endif
+            @php($pos++)
         @endforeach
     </table>
 @endsection
