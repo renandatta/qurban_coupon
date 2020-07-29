@@ -49,6 +49,10 @@ class ApiController extends Controller
             ->first();
         if (empty($userAuth)) return response()->json(['error' => 'Token Kadaluarsa !']);
         $periods = Period::orderBy('id', 'desc')->get();
+        foreach ($periods as $key => $period) {
+            $periods[$key]->coupon_total = Coupon::where('period_id', '=', $period->id)->count();
+            $periods[$key]->claimed = Coupon::where('period_id', '=', $period->id)->where('is_clain', '=', 1)->count();
+        }
         return response()->json(['success' => $periods]);
     }
 
