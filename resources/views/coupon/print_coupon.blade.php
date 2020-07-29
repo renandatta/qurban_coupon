@@ -31,7 +31,7 @@
                     <img src="{{ asset('img/coupon.png') }}" alt="" style="width: 18.5cm;">
                 </td>
             </tr>
-            @if($pos == 6) 
+            @if($pos == 6)
                 @php($pos = 1)
             @endif
             @php($pos++)

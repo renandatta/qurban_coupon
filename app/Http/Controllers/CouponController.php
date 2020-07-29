@@ -45,7 +45,7 @@ class CouponController extends Controller
 
         $this->coupon->where('id', '=', $request->input('id'))->update([
             'is_claim' => 1,
-            'claim_at' => date('Y-m-d H:is'),
+            'claim_at' => date('Y-m-d') . ' ' . date('H:i:s'),
             'claim_media' => 'Web'
         ]);
     }

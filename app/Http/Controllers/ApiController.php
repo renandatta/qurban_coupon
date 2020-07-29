@@ -51,7 +51,7 @@ class ApiController extends Controller
         $periods = Period::orderBy('id', 'desc')->get();
         foreach ($periods as $key => $period) {
             $periods[$key]->coupon_total = Coupon::where('period_id', '=', $period->id)->count();
-            $periods[$key]->claimed = Coupon::where('period_id', '=', $period->id)->where('is_clain', '=', 1)->count();
+            $periods[$key]->claimed = Coupon::where('period_id', '=', $period->id)->where('is_claim', '=', 1)->count();
         }
         return response()->json(['success' => $periods]);
     }
@@ -65,11 +65,19 @@ class ApiController extends Controller
         if (empty($userAuth)) return response()->json(['error' => 'Token Kadaluarsa !']);
         if (!$request->has('period_id') || !$request->has('no_coupon'))
             return response()->json(['error' => 'Parameter Tidak Sesuai !']);
+        if (Coupon::where('period_id', '=', $request->input('period_id'))->count() == 0)
+            return response()->json(['error' => 'Kupon tidak ditemukan']);
+        $check = Coupon::where('period_id', '=', $request->input('period_id'))
+            ->where('is_claim', '=', 0)
+            ->where('no_coupon', '=', $request->input('no_coupon'))
+            ->count();
+        if ($check == 0)
+            return response()->json(['error' => 'Kupon sudah diclaim']);
         $coupon = Coupon::where('period_id', '=', $request->input('period_id'))
             ->where('no_coupon', '=', $request->input('no_coupon'))
             ->update([
                 'is_claim' => 1,
-                'claim_at' => date('Y-m-d H:is'),
+                'claim_at' => date('Y-m-d') . ' ' . date('H:i:s'),
                 'claim_media' => 'Android'
             ]);
         return response()->json(['success' => $coupon]);

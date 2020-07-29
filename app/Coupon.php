@@ -9,7 +9,7 @@ class Coupon extends Model
 {
     use SoftDeletes;
     protected $fillable = [
-        'period_id', 'no_coupon', 'name'
+        'period_id', 'no_coupon', 'name', 'claim_at', 'claim_media'
     ];
 
     public function period()
